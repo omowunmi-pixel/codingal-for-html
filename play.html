@@ -1,0 +1,80 @@
+<!DOCTYPE html> 
+<html>  
+    <head>  
+        <title>My Playlist Sorter</title>  
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">  
+        <style>  
+            body {  
+                background: lavender;  
+            }  
+            h1, h3 {  
+                color: darkviolet;  
+            }  
+            .box {  
+                background: white;  
+                color: darkviolet;  
+            }  
+        </style>
+        <body>  
+            <div class="container py-4">  
+                <h1 class="mb-1">My Playlist Sorter</h1>  
+                <p class="text-muted mb-4">Sort and label your music playlist using JavaScript array methods!</p>  
+                <!-- TOPIC 1 & 2: sort() and reverse() -->  
+                <div class="card mb-4">  
+                    <div class="card-body">  
+                        <h3 class="card-title">Song Names</h3>  
+                        <button class="btn btn-primary mr-2" onclick="sortAZ()">Sort A to Z</button>  
+                        <button class="btn btn-primary" onclick="sortZA()">Sort Z to A</button>  
+                        <div id="nameResult" class="box p-3 mt-3 rounded"></div>  
+                    </div>  
+                </div>  
+                <!-- TOPIC 3: sort() with compare function -->  
+                <div class="card mb-4">  
+                    <div class="card-body">  
+                        <h3 class="card-title">Play Counts</h3>  
+                        <button class="btn btn-primary mr-2" onclick="sortLeast()">Least Played First</button>  
+                        <button class="btn btn-primary" onclick="sortMost()">Most Played First</button>  
+                        <div id="countResult" class="box p-3 mt-3 rounded"></div>  
+                    </div>  
+                </div>  
+                <!-- TOPIC 4: map() -->  
+                <div class="card mb-4">  
+                    <div class="card-body">  
+                        <h3 class="card-title">Label Every Play Count</h3>  
+                        <button class="btn btn-primary" onclick="addLabel()">Add Plays Label</button>  
+                        <div id="labelResult" class="box p-3 mt-3 rounded"></div>  
+                    </div>  
+                </div>  
+            </div>
+            <script>  
+                // Sample data for song names and play counts  
+                const songs = ["Song A", "Song B", "Song C", "Song D"];  
+                const playCounts = [150, 300, 75, 200];  
+
+                function sortAZ() {  
+                    const sortedSongs = [...songs].sort();  
+                    document.getElementById("nameResult").innerText = sortedSongs.join(", ");  
+                }  
+
+                function sortZA() {  
+                    const sortedSongs = [...songs].sort().reverse();  
+                    document.getElementById("nameResult").innerText = sortedSongs.join(", ");  
+                }  
+
+                function sortLeast() {  
+                    const sortedCounts = [...playCounts].sort((a, b) => a - b);  
+                    document.getElementById("countResult").innerText = sortedCounts.join(", ");  
+                }  
+
+                function sortMost() {  
+                    const sortedCounts = [...playCounts].sort((a, b) => b - a);  
+                    document.getElementById("countResult").innerText = sortedCounts.join(", ");  
+                }  
+
+                function addLabel() {  
+                    const labeledCounts = playCounts.map(count => `${count} plays`);  
+                    document.getElementById("labelResult").innerText = labeledCounts.join(", ");  
+                }
+            </script>
+        </body>
+</html>
